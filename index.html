@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>March Madness Math Bracket</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .bracket { display: flex; flex-direction: column; align-items: center; }
+        .round { margin: 20px; }
+        .matchup { border: 2px solid #333; padding: 10px; margin: 10px; width: 300px; }
+        .team { margin: 5px 0; }
+        .winner-display { margin-top: 10px; font-weight: bold; }
+        .show-answer-btn { background: #008CBA; color: white; border: none; padding: 5px 10px; cursor: pointer; }
+        .show-answer-btn:hover { background: #005f73; }
+    </style>
+</head>
+<body>
+    <h1>March Madness Math Bracket</h1>
+    <div class="bracket">
+        <div class="round">
+            <h2>Round 1</h2>
+            <div class="matchup" id="match-1">
+                <div class="team">40% of 500</div>
+                <div class="team">35% of 600</div>
+                <button class="show-answer-btn" data-match-id="1-1">Show Answer</button>
+                <div id="winner-1-1" class="winner-display"></div>
+            </div>
+            <div class="matchup" id="match-2">
+                <div class="team">18% of 900</div>
+                <div class="team">22% of 750</div>
+                <button class="show-answer-btn" data-match-id="1-2">Show Answer</button>
+                <div id="winner-1-2" class="winner-display"></div>
+            </div>
+            <!-- More matchups here -->
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const answers = {
+                '1-1': { winner: 'B', explanation: '35% of 600 = 210, which is greater than 40% of 500 = 200' },
+                '1-2': { winner: 'B', explanation: '22% of 750 = 165, which is greater than 18% of 900 = 162' }
+            };
+
+            function revealWinner(button) {
+                const matchId = button.getAttribute("data-match-id");
+                const winnerInfo = answers[matchId];
+                if (winnerInfo) {
+                    const resultDiv = document.createElement("div");
+                    resultDiv.innerHTML = `<strong>Winner: Option ${winnerInfo.winner}</strong><br>${winnerInfo.explanation}`;
+                    resultDiv.style.padding = "10px";
+                    resultDiv.style.border = "2px solid #4CAF50";
+                    resultDiv.style.backgroundColor = "#DFF2BF";
+                    resultDiv.style.color = "#4CAF50";
+                    resultDiv.style.fontWeight = "bold";
+                    resultDiv.style.textAlign = "center";
+                    resultDiv.style.borderRadius = "5px";
+                    button.replaceWith(resultDiv);
+                }
+            }
+
+            document.querySelectorAll(".show-answer-btn").forEach(button => {
+                button.addEventListener("click", function() {
+                    revealWinner(this);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
