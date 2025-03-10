@@ -148,19 +148,22 @@
       const winnerInfo = answers[matchId];
       if (winnerInfo) {
         const resultDiv = document.getElementById(`winner-${matchId}`);
-        resultDiv.innerHTML = `<strong>Winner: Option ${winnerInfo.winner}</strong><br>${winnerInfo.explanation}`;
-        resultDiv.style.padding = "10px";
-        resultDiv.style.border = "2px solid #4CAF50";
-        resultDiv.style.backgroundColor = "#DFF2BF";
-        resultDiv.style.color = "#4CAF50";
-        resultDiv.style.fontWeight = "bold";
-        resultDiv.style.textAlign = "center";
-        resultDiv.style.borderRadius = "5px";
-        button.disabled = true;
-        button.style.backgroundColor = "#ccc";
+        if (resultDiv) {
+          resultDiv.innerHTML = `<strong>Winner: Option ${winnerInfo.winner}</strong><br>${winnerInfo.explanation}`;
+          resultDiv.style.padding = "10px";
+          resultDiv.style.border = "2px solid #4CAF50";
+          resultDiv.style.backgroundColor = "#DFF2BF";
+          resultDiv.style.color = "#4CAF50";
+          resultDiv.style.fontWeight = "bold";
+          resultDiv.style.textAlign = "center";
+          resultDiv.style.borderRadius = "5px";
+          button.disabled = true;
+          button.style.backgroundColor = "#ccc";
+        }
       }
     }
   </script>
 </body>
 </html>
+
 
